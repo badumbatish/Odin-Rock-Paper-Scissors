@@ -43,7 +43,10 @@ function playRound(_playerSelection, _computerSelection) {
         return `You lose! ${_computerSelection} beats ${_playerSelection}`;
     }
 };
-const playerSelection = 'rock';
-const computerSelection = getComputerChoice();
-console.log(computerSelection);
-console.log(playRound(playerSelection, computerSelection));
+
+
+
+for (let i = 0; i < 5; i++) {
+    let playerSelection = prompt("Pick a choice: rock, paper, or scissor");
+    console.log(playRound(playerSelection, getComputerChoice()));
+}
