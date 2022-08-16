@@ -44,7 +44,10 @@ function playRound(_playerSelection, _computerSelection) {
     }
 };
 
-
+let playerChoices = [];
+for(let i=0; i< 3; i++) {
+    playerChoices.push(document.createElement("button"));
+}
 
 //for (let i = 0; i < 5; i++) {
 //    let playerSelection = prompt("Pick a choice: rock, paper, or scissor");
