@@ -13,12 +13,26 @@ function getComputerChoice() {
         return 'SCISSORS';
     }
 };
+
 pScore = document.querySelector('.p-score');
 cScore = document.querySelector('.c-score');
+
+let scoreBoard = document.querySelector('.board');
+let finalMessage = document.createElement('div');
+finalMessage.textContent = '----------------------------------';
+
+scoreBoard.append(finalMessage);
+
+
 function update(score) {
     score.textContent= (Number(score.textContent)+1);
 }
+
+function checkScore(score) {
+    return (Number(score.textContent) === 5);
+}
 function playRound(e) {
+    if(checkScore(pScore) || checkScore(cScore)) return;
     // 0 means draw
     // 1 means win
     // -1 means lose
@@ -41,34 +55,43 @@ function playRound(e) {
     // Beautify format: capitalizing string
     // https://www.samanthaming.com/pictorials/how-to-capitalize-a-string/
     if(win === 1) {
-        console.log(`You win! ${_playerSelection} beats ${_computerSelection}`);
+        finalMessage.textContent = `You win! ${_playerSelection} beats ${_computerSelection}`;
         update(pScore);
     } else if (win === 0) {
-        console.log(`You draw!`);
+        finalMessage.textContent = `You draw!`;
     } else {
-        console.log(`You lose! ${_computerSelection} beats ${_playerSelection}`);
+        finalMessage.textContent = `You lose! ${_computerSelection} beats ${_playerSelection}`;
         update(cScore);
+    }
+
+    if(checkScore(pScore)) {
+        finalMessage.textContent = "The player has won!!!";
+    } else if(checkScore(cScore)) {
+        finalMessage.textContent = "The computer has won!!!";
     }
 };
 
 let choices = ['ROCK','PAPER','SCISSOR'];
+// array of buttons for player's choices: rock, paper, or scissor
 let playerChoices = [];
+
+// array of buttons for computer's choices: rock, paper, or scissor
 let computerChoices = [];
 for(let i=0; i< 3; i++) {
     playerChoices.push(document.createElement("button"));
     playerChoices[i].textContent = choices[i];
+    playerChoices[i].classList.add("button");
     playerChoices[i].addEventListener("click", playRound);
+
+
     computerChoices.push(document.createElement("button"));
     computerChoices[i].textContent = choices[i];
+    computerChoices[i].classList.add("button");
 }
-
 
 let pChoice = document.querySelector('.p-choice');
 pChoice.append(...playerChoices);
 
 let cChoice = document.querySelector('.c-choice');
 cChoice.append(...computerChoices);
-//for (let i = 0; i < 5; i++) {
-//    let playerSelection = prompt("Pick a choice: rock, paper, or scissor");
-//    console.log(playRound(playerSelection, getComputerChoice()));
-//}
+
