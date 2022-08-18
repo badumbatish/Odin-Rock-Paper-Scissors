@@ -95,3 +95,16 @@ pChoice.append(...playerChoices);
 let cChoice = document.querySelector('.c-choice');
 cChoice.append(...computerChoices);
 
+let total = document.querySelector('.total');
+
+let all = Array.prototype.slice.call(total.getElementsByTagName('*'));
+
+
+all.forEach(element => {
+   element.classList.add("flex-dp");
+});
+
+scoreBoard.classList.add('column'); 
+
+document.querySelector('.playerBoard').classList.add('column');
+document.querySelector('.computerBoard').classList.add('column');

@@ -2,9 +2,18 @@
     display: flex;
 }
 
+.column {
+    flex-direction: column;
+}
+
+.row {
+    flex-direction: row;
+}
+
+
 .button {
     padding: 15px 25px;
-    font-size: 24px;
+    font-size: 1rem;
     text-align: center;
     cursor: pointer;
     outline: none;
